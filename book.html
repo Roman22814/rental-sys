@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Your Car</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 40px; }
+    input, select, button { padding: 10px; margin: 10px; width: 220px; }
+    .container { display: inline-block; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+    .confirmation { background-color: #d0f0d0; padding: 10px; margin-top: 20px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1 style="color: green;">Car Rental System</h1>
+  <div class="container">
+    <h2>Book Your Car</h2>
+    <form onsubmit="bookCar(); return false;">
+      <select id="model" required>
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+      </select><br>
+      <input type="date" id="pickup" required><br>
+      <input type="date" id="return" required><br>
+      <button type="submit">Book Now</button><br>
+      <p>Welcome, Akshaya!</p>
+      <button onclick="window.location.href='login.html'">Logout</button>
+    </form>
+    <div class="confirmation" id="confirmation" style="display:none;"></div>
+  </div>
+
+  <script>
+    function bookCar() {
+      const model = document.getElementById("model").value;
+      const pickup = document.getElementById("pickup").value;
+      const ret = document.getElementById("return").value;
+      const cost = 1000 * (new Date(ret) - new Date(pickup)) / (1000 * 60 * 60 * 24);
+      document.getElementById("confirmation").style.display = 'block';
+      document.getElementById("confirmation").innerHTML = 
+        `You have successfully booked a ${model} from ${pickup} to ${ret}<br>Total Cost: ₹${cost}`;
+    }
+  </script>
+</body>
+</html>
